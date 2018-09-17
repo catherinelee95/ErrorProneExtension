@@ -1,4 +1,4 @@
-jpacman-framework
+Group 4: jpacman-framework
 =================
 
 Pacman-like game used for teaching software testing.
