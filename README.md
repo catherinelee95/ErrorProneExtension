@@ -1,6 +1,11 @@
 Group 4: jpacman-framework
 =================
 
+Testing Course Changes by
+Catherine Lee (32556136)
+Alexander Julianto (39950143)
+=================
+
 Pacman-like game used for teaching software testing.
 
 Parts of the code are well tested, whereas others are left untested intentionally.
