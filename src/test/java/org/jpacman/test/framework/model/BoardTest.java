@@ -5,6 +5,7 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import org.jpacman.framework.model.Board;
 import org.jpacman.framework.model.Direction;
@@ -15,28 +16,37 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Test the Board class.
- * 
+ * Tests for the board class
+ *
  */
 public class BoardTest {
 	
 	private Board board;
 	private Sprite sprite;
 	
+
 	/**
-	 * Create a Board, and give it initial height and width.
+	 * Initialize a board and sprite.
 	 */
-	@Before public void setUp() {
-		//TODO: Do we need this ?
+	@Before 
+	public void setUp() {
 		sprite = new Sprite() {};
 		board = new Board(10, 10);
 	}
 
 	
 	//////////////Board Construction Tests//////////////////
-	
 	/**
-	 * Test the Board constructor.
+	 * Create a board constructor with a positive width and height.
+	 */
+	@Test
+	public void testInit() {
+		Board b = new Board(250, 120);
+		assertThat(b.getWidth(), equalTo(250));
+		assertThat(b.getHeight(), equalTo(120));
+	}
+	/**
+	 * Check if we can construct a board with an invalid width.
 	 */
 	@Test
 	public void testInitInvalidWidth() {
@@ -49,6 +59,9 @@ public class BoardTest {
 		}
 	}
 	
+	/**
+	 * Check if we can construct a board with an invalid height.
+	 */
 	@Test
 	public void testInitInvalidHeight() {
 		try {
@@ -61,6 +74,9 @@ public class BoardTest {
 	}
 	
 	
+	/**
+	 * Check if we can construct a board if both the width and height are invalid.
+	 */
 	@Test
 	public void testInitInvalidWidthHeight() {
 		try {
@@ -74,7 +90,7 @@ public class BoardTest {
 	
 	
 	/**
-	 * Test the Board constructor.
+	 * Create a board with 0 width and height
 	 */
 	@Test
 	public void testInitZeroSizeBoard() {
@@ -84,32 +100,20 @@ public class BoardTest {
 	}
 	
 	
-	/**
-	 * Test the Board constructor.
-	 */
-	@Test
-	public void testInit() {
-		Board b = new Board(250, 120);
-		assertThat(b.getWidth(), equalTo(250));
-		assertThat(b.getHeight(), equalTo(120));
-	}
-	
 	
 	//////////////Test board and sprite interactions//////////////////
+	/**
+	 * Place a sprite on an existing tile
+	 */
 	@Test
-	public void testPutOffBoard() {
-		try {
-			board.put(sprite, 10, 10);
-			fail("Sprite should not be succesfully put");
-		} catch (AssertionError e) {
-			String message = "PRE1: (10, 10)not on board of size 10 * 10";
-			assertEquals(message, e.getMessage());
-		}
-		
-		//Confirm that the sprite was not put on the board.
-		assertEquals(sprite.getTile(), null);
+	public void testPutSprite() {
+		board.put(sprite, 5, 5);
+		assertEquals(board.spriteAt(5, 5), sprite);
 	}
 	
+	/**
+	 * Test if we can place a null sprite on the board
+	 */
 	@Test
 	public void testPutNullSprite() {
 		
@@ -124,7 +128,24 @@ public class BoardTest {
 	}
 	
 	/**
-	 * Test the put method that put a sprite at a given position.
+	 * Test if we can place a sprite outside the board boundaries
+	 */
+	@Test
+	public void testPutOffBoard() {
+		try {
+			board.put(sprite, 10, 10);
+			fail("Sprite should not be succesfully put");
+		} catch (AssertionError e) {
+			String message = "PRE1: (10, 10)not on board of size 10 * 10";
+			assertEquals(message, e.getMessage());
+		}
+		
+		//Confirm that the sprite was not put on the board.
+		assertEquals(sprite.getTile(), null);
+	}
+	
+	/**
+	 * Test if we can place a sprite already on a tile on a new tile.
 	 */
 	@Test
 	public void testPutOccupiedSprite() {
@@ -144,13 +165,9 @@ public class BoardTest {
 		assertEquals(board.spriteAt(5, 5), null);
 	}
 	
-	@Test
-	public void testPutSprite() {
-		board.put(sprite, 5, 5);
-		assertEquals(board.spriteAt(5, 5), sprite);
-	}
-	
-	
+	/**
+	 * Test if we correctly get the correct type of sprite back after putting it on the board.
+	 */
 	@Test
 	public void testPutSpriteType() {
 		board.put(sprite, 5, 5);
@@ -158,6 +175,9 @@ public class BoardTest {
 	}
 	
 	
+	/**
+	 * Test if we can get a sprite type on an invalid (out of bounds) tile on the board
+	 */
 	@Test
 	public void testInvalidSpriteAtType() {
 		try {
@@ -171,9 +191,39 @@ public class BoardTest {
 
 	}
 	
-	
+	/**
+	 * Confirm we can get the type of a sprite correctly
+	 */
 	@Test
-	public void invalidSpriteAt() {
+	public void testSpriteAt() {
+		board.put(sprite, 5, 6);
+		Sprite fetchedSprite = board.spriteAt(5, 6);
+		assertEquals(sprite, fetchedSprite);
+	}
+	
+	/**
+	 * Test if we can get the sprite type on an empty tile
+	 */
+	@Test
+	public void testMissingSpriteAtType() {
+		SpriteType spriteType = board.spriteTypeAt(5,  5);
+		assertEquals(spriteType, SpriteType.EMPTY);
+	}
+	
+	/**
+	 * Attempt to get a sprite from that doesn't exist in the board.
+	 */
+	@Test
+	public void testEmptySpriteAt() {
+		Sprite fetchedSprite = board.spriteAt(5, 5);
+		assertEquals(fetchedSprite, null);
+	}
+	
+	/**
+	 * Attempt the sprite at method in an invalid (out of bounds) tile on the board.
+	 */
+	@Test
+	public void testInvalidSpriteAt() {
 		try {
 			board.spriteAt(10, 10);
 			fail("Invalid position should fail");
@@ -184,8 +234,31 @@ public class BoardTest {
 		}
 	}
 	
+//////////////Within Borders test//////////////////
+	/**
+	 * Confirm that we are not within borders if we are outside boundaries
+	 */
+	@Test
+	public void testInvalidWithinBorders() {
+		boolean isWithinBorders = board.withinBorders(-1, -1);
+		assertFalse(isWithinBorders);
+	}
+	
+	/**
+	 * Confirm that we are within boards if we select values within the expected boundaries
+	 */
+	@Test
+	public void testWithinBorders() {
+		boolean isWithinBorders = board.withinBorders(5, 5);
+		assertTrue(isWithinBorders);
+	}
+	
+	
 	//////////////Test board tiles//////////////////
 	
+	/**
+	 * Confirm that we can get an expected tile using the TileAt method
+	 */
 	@Test
 	public void testTileAt() {
 		Tile boardTile = board.tileAt(5, 6);
@@ -193,6 +266,10 @@ public class BoardTest {
 		assertEquals(boardTile.getY(), 6);
 	}
 	
+	/**
+	 * Confirm that we cannot get a tile outside the boundaries of the board using the TileAt 
+	 * method
+	 */
 	@Test
 	public void testInvalidTileAt() {
 		try {
@@ -205,6 +282,9 @@ public class BoardTest {
 		}
 	}
 	
+	/**
+	 * Confirm that we cannot get a tile at an offset if the base tile is null
+	 */
 	@Test
 	public void testNullTileAtOffset() {
 		try {
@@ -217,6 +297,10 @@ public class BoardTest {
 		}
 	}
 	
+	/**
+	 * Confirm that we cannot get a tile at an offset if the base tile is
+	 * out of boundaries
+	 */
 	@Test
 	public void testInvalidBaseTileAtOffset() {
 		try {
@@ -230,6 +314,39 @@ public class BoardTest {
 	}
 	
 	@Test
-	public void testInvalidTileAtOffset() {
+	public void testTileAtOffsetBackwardsWormhole() {
+		Tile newTile = board.tileAtOffset(new Tile(2, 2), -3, -3);
+		assertEquals(newTile.getX(), 9);
+		assertEquals(newTile.getY(), 9);
 	}
+	
+	@Test
+	public void testTileAtOffsetForwardWormhole() {
+		Tile newTile = board.tileAtOffset(new Tile(2, 2), 9, 9);
+		assertEquals(newTile.getX(), 1);
+		assertEquals(newTile.getY(), 1);
+	}
+	
+	@Test
+	public void testTileAtOffsetFoward() {
+		Tile newTile = board.tileAtOffset(new Tile(2, 2), 3, 5);
+		assertEquals(newTile.getX(), 5);
+		assertEquals(newTile.getY(), 7);
+	}
+	
+	@Test
+	public void testTileAtOffsetBackwards() {
+		Tile newTile = board.tileAtOffset(new Tile(2, 2), 3, 5);
+		assertEquals(newTile.getX(), 5);
+		assertEquals(newTile.getY(), 7);
+	}
+	
+	@Test
+	public void testTileAtDirection() {
+		Tile tileBelow = board.tileAtDirection(new Tile(2, 2), Direction.DOWN);
+		assertEquals(tileBelow.getX(), 2);
+		assertEquals(tileBelow.getY(), 3);
+		
+	}
+	
 }
