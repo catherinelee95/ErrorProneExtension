@@ -3,6 +3,7 @@ package org.jpacman.test.framework.model;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import static org.junit.Assert.assertEquals;
 
 import org.jpacman.framework.model.Board;
@@ -35,11 +36,53 @@ public class BoardTest {
 	 * Test the Board constructor.
 	 */
 	@Test
-	public void testInitial() {
-		//TODO: Do we need this ?
-		Board b = new Board(10, 20);
-		assertThat(b.getWidth(), equalTo(10));
-		assertThat(b.getHeight(), equalTo(20));
+	public void testInvalidInitialization() {
+		try {
+			Board b = new Board(-1, 5);
+			fail("Board should not be successfully created.");
+		} catch (AssertionError e) {
+			String message = "PRE1: width should be >= 0 but is -1";
+			assertEquals(message, e.getMessage());
+		}
+		
+		try {
+			Board b = new Board(100, -5);
+			fail("Board should not be successfully created.");
+		} catch (AssertionError e) {
+			String message = "PRE: current should be < max but is -5";
+			assertEquals(message, e.getMessage());
+		}
+		
+		try {
+			Board b = new Board(-1, -500);
+			fail("Board should not be successfully created.");
+		} catch (AssertionError e) {
+			String message = "PRE1: width should be >= 0 but is -1";
+			assertEquals(message, e.getMessage());
+		}
+	}
+	
+	
+	
+	/**
+	 * Test the Board constructor.
+	 */
+	@Test
+	public void testInitZeroSizeBoard() {
+		Board b = new Board(0, 0);
+		assertThat(b.getWidth(), equalTo(0));
+		assertThat(b.getHeight(), equalTo(0));
+	}
+	
+	
+	/**
+	 * Test the Board constructor.
+	 */
+	@Test
+	public void testInit() {
+		Board b = new Board(250, 120);
+		assertThat(b.getWidth(), equalTo(250));
+		assertThat(b.getHeight(), equalTo(120));
 	}
 	
 	
@@ -47,8 +90,32 @@ public class BoardTest {
 	 * Test the put method that put a sprite at a given position.
 	 */
 	@Test
-	public void testPut() {
-		//TODO: Implement me.
+	public void testInvalidPut() {
+		//test off the board 
+		try {
+			board.put(adam, 11, 10);
+			fail("Sprite should not be succesfully put");
+		} catch (AssertionError e) {
+			String message = "PRE1: ";
+			assertEquals(message, e.getMessage());
+		}
+		//test null sprite 
+		try {
+			board.put(null, 11, 10);
+			assert(false);
+		} catch (AssertionError e) {
+			
+		}
+		//test occupied sprite
+		try {
+			Sprite ben = new Sprite() { };
+			board.put(null, 11, 10);
+		
+		} catch (AssertionError e) {
+			
+		}
+		
+		
 		board.put(adam, 2, 3);
 		assertTrue(board.tileAt(2, 3).containsSprite(adam));
 	}

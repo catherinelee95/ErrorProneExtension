@@ -58,6 +58,7 @@ public class BoardWithinBordersTest {
 	public static Collection<Object[]> data() {
 		Object[][] values = new Object[][] {
 				//TODO: Implement me
+			   
 			    { 9, 19, true },
 				{ 10, 20, false } };
 		return Arrays.asList(values);
