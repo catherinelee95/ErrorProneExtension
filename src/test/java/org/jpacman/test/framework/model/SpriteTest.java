@@ -2,16 +2,20 @@ package org.jpacman.test.framework.model;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
+
 import org.jpacman.framework.model.Sprite;
 import org.jpacman.framework.model.Tile;
+import org.jpacman.framework.model.IBoardInspector.SpriteType;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -33,6 +37,42 @@ public class SpriteTest {
 		john.occupy(center);
 	}
 
+	/**
+	 * Confirm that an assertion error should be thrown when
+	 * we try to occupy a null tile.
+	 * 
+	 */
+	@Test (expected = AssertionError.class)
+	public void testOccupyNull() throws AssertionError {
+		john.occupy(null);
+	}
+	
+	/**
+	 * Confirm that an assertion error should be thrown when
+	 * we try to occupy twice.
+	 */
+	@Test (expected = AssertionError.class)
+	public void testOccupyTwice() throws AssertionError {
+		john.occupy(center);
+	}
+	
+	/**
+	 * Confirm that an assertion error should be thrown when
+	 * we try to deoccupy an empty tile.
+	 */
+	@Test
+	public void testDeocupiedEmptyTile() {
+		try {
+			john.deoccupy();
+			john.deoccupy();
+			fail("Deoccupy an empty tile should be invalid");
+		
+		} catch (AssertionError e) {
+			String message = "PRE: Must occupy a cell already.";
+			assertEquals(message, e.getMessage());
+		}
+	}
+	
 	/**
 	 * Test the initial situation.
 	 */
@@ -96,7 +136,24 @@ public class SpriteTest {
 		john.deoccupy();
 		assertNull(john.getTile());
 	}
-
+	
+	/**
+	 * Confirm that we could get the 'OTHER' sprite type.
+	 */
+	@Test
+	public void testGetSpriteType() {
+		assertEquals(SpriteType.OTHER ,john.getSpriteType());
+	}
+	
+	/**
+	 * Confirm that we could display information about which Tile is
+	 * being occupied by the Sprite.
+	 */
+	@Test
+	public void testToString() {
+		assertEquals("OTHER occupying [0,0]", john.toString());
+	}
+	
 	/**
 	 * @param expected
 	 *            The tile the sprite should be on.

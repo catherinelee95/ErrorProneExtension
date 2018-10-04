@@ -57,10 +57,14 @@ public class BoardWithinBordersTest {
 	@Parameters
 	public static Collection<Object[]> data() {
 		Object[][] values = new Object[][] {
-				//TODO: Implement me
-			   
-			    { 9, 19, true },
-				{ 10, 20, false } };
+			    { 0, 15, true },
+			    { -1, 17, false },
+			    { 10, 11, false },
+			    { 9, 10, true },
+			    { 3, 0, true },
+			    { 4, -1, false },
+			    { 7, 20, false },
+			    { 8, 19, true } };
 		return Arrays.asList(values);
 	}
 	
