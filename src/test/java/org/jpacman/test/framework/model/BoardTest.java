@@ -4,6 +4,11 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
@@ -14,6 +19,7 @@ import org.jpacman.framework.model.Tile;
 import org.jpacman.framework.model.IBoardInspector.SpriteType;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runners.Parameterized.Parameters;
 
 /**
  * Tests for the board class
@@ -312,35 +318,47 @@ public class BoardTest {
 			assertEquals(message, e.getMessage());
 		}
 	}
+
 	
+	/**
+	 * Test various tiles we can get using an offset
+	 */
 	@Test
-	public void testTileAtOffsetBackwardsWormhole() {
-		Tile newTile = board.tileAtOffset(new Tile(2, 2), -3, -3);
-		assertEquals(newTile.getX(), 9);
-		assertEquals(newTile.getY(), 9);
+	public void testTileAtOffset() {
+		int[][] values = data();
+		for(int i = 0; i < values.length; i++) {
+			int[] testInfo = values[i];
+			
+			Tile source = new Tile(testInfo[0], testInfo[1]);
+			Tile target = board.tileAtOffset(source, testInfo[2], testInfo[3]);
+			assertEquals(target.getX(), testInfo[4]);
+			assertEquals(target.getY(), testInfo[5]);
+		}
 	}
 	
-	@Test
-	public void testTileAtOffsetForwardWormhole() {
-		Tile newTile = board.tileAtOffset(new Tile(2, 2), 9, 9);
-		assertEquals(newTile.getX(), 1);
-		assertEquals(newTile.getY(), 1);
+	
+	/**
+	 * Data points to be fed to tileAtOffset test
+	 * @return
+	 */
+	private int[][] data() {
+		int[][] values = new int[][] {
+			// x-axis and y axis of original tile, dx, dy, resulting x, resulting y
+			{ 2, 2, 3, 5, 5, 7},
+			{ 2, 2, -1, 3, 1, 5},
+			{ 2, 2, -2, -1, 0, 1},
+			//worm hole cases
+			{ 2, 2, -3, -3, 9, 9},
+			{ 2, 2, -4, 9, 8, 1},
+			{ 2, 2, 9, 9, 1, 1},
+			{ 2, 2, 9, -4, 1, 8}
+			};
+			return values;
 	}
 	
-	@Test
-	public void testTileAtOffsetFoward() {
-		Tile newTile = board.tileAtOffset(new Tile(2, 2), 3, 5);
-		assertEquals(newTile.getX(), 5);
-		assertEquals(newTile.getY(), 7);
-	}
-	
-	@Test
-	public void testTileAtOffsetBackwards() {
-		Tile newTile = board.tileAtOffset(new Tile(2, 2), 3, 5);
-		assertEquals(newTile.getX(), 5);
-		assertEquals(newTile.getY(), 7);
-	}
-	
+	/**
+	 * Test to get a tile in a specified direction
+	 */
 	@Test
 	public void testTileAtDirection() {
 		Tile tileBelow = board.tileAtDirection(new Tile(2, 2), Direction.DOWN);
