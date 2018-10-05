@@ -17,7 +17,7 @@ public class FactoryExceptionTest {
 	 * @throws FactoryException 
 	 */
 	@Test
-	public void testFactoryExceptionContructor() throws Exception {
+	public void testFactoryExceptionContructor() {
 		String message = "Exception Message";
 		FactoryException exception = new FactoryException(message);
 		assertEquals(message, exception.getMessage());
@@ -41,7 +41,7 @@ public class FactoryExceptionTest {
 	 * @throws FactoryException 
 	 */
 	@Test
-	public void testFactoryExceptionWithCause() throws Exception {
+	public void testFactoryExceptionWithCause() {
 		String message = "Exception Message";
 		Throwable cause = new Throwable();
 		FactoryException exception = new FactoryException(message, cause);
