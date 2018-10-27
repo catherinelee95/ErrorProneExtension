@@ -51,9 +51,9 @@ public class BoardTest {
 		assertThat(b.getWidth(), equalTo(250));
 		assertThat(b.getHeight(), equalTo(120));
 	}
-	/**
+/*	*//**
 	 * Check if we can construct a board with an invalid width.
-	 */
+	 *//*
 	@Test
 	public void testInitInvalidWidth() {
 		try {
@@ -63,11 +63,11 @@ public class BoardTest {
 			String message = "PRE1: width should be >= 0 but is -1";
 			assertEquals(message, e.getMessage());
 		}
-	}
+	}*/
 	
-	/**
+/*	*//**
 	 * Check if we can construct a board with an invalid height.
-	 */
+	 *//*
 	@Test
 	public void testInitInvalidHeight() {
 		try {
@@ -77,12 +77,12 @@ public class BoardTest {
 			String message = "PRE2: height should be >= 0 but is -5";
 			assertEquals(message, e.getMessage());
 		}
-	}
+	}*/
 	
 	
-	/**
+/*	*//**
 	 * Check if we can construct a board if both the width and height are invalid.
-	 */
+	 *//*
 	@Test
 	public void testInitInvalidWidthHeight() {
 		try {
@@ -92,7 +92,7 @@ public class BoardTest {
 			String message = "PRE1: width should be >= 0 but is -1";
 			assertEquals(message, e.getMessage());
 		}
-	}
+	}*/
 	
 	
 	/**
@@ -117,9 +117,9 @@ public class BoardTest {
 		assertEquals(board.spriteAt(5, 5), sprite);
 	}
 	
-	/**
+/*	*//**
 	 * Test if we can place a null sprite on the board
-	 */
+	 *//*
 	@Test
 	public void testPutNullSprite() {
 		
@@ -131,11 +131,11 @@ public class BoardTest {
 			String message = "PRE2: Sprite not null";
 			assertEquals(message, e.getMessage());
 		}
-	}
+	}*/
 	
-	/**
+/*	*//**
 	 * Test if we can place a sprite outside the board boundaries
-	 */
+	 *//*
 	@Test
 	public void testPutOffBoard() {
 		try {
@@ -148,11 +148,11 @@ public class BoardTest {
 		
 		//Confirm that the sprite was not put on the board.
 		assertEquals(sprite.getTile(), null);
-	}
+	}*/
 	
-	/**
+/*	*//**
 	 * Test if we can place a sprite already on a tile on a new tile.
-	 */
+	 *//*
 	@Test
 	public void testPutOccupiedSprite() {
 		Tile tile = new Tile(1,1);
@@ -169,7 +169,7 @@ public class BoardTest {
 		}
 		
 		assertEquals(board.spriteAt(5, 5), null);
-	}
+	}*/
 	
 	/**
 	 * Test if we correctly get the correct type of sprite back after putting it on the board.
@@ -181,9 +181,9 @@ public class BoardTest {
 	}
 	
 	
-	/**
+/*	*//**
 	 * Test if we can get a sprite type on an invalid (out of bounds) tile on the board
-	 */
+	 *//*
 	@Test
 	public void testInvalidSpriteAtType() {
 		try {
@@ -195,7 +195,25 @@ public class BoardTest {
 			assertEquals(message, e.getMessage());
 		}
 
-	}
+	}*/
+	
+	
+	
+/*	*//**
+	 * Test if we can get a sprite type on an invalid (out of bounds) tile on the board
+	 *//*
+	@Test
+	public void testInvalidSpriteAtType2() {
+		try {
+			board.spriteTypeAt(5, 10);
+			fail("Invalid position should fail");
+		
+		} catch (AssertionError e) {
+			String message = "PRE: (5, 10)not on board of size 10 * 10";
+			assertEquals(message, e.getMessage());
+		}
+
+	}*/
 	
 	/**
 	 * Confirm we can get the type of a sprite correctly
@@ -225,9 +243,9 @@ public class BoardTest {
 		assertEquals(fetchedSprite, null);
 	}
 	
-	/**
+/*	*//**
 	 * Attempt the sprite at method in an invalid (out of bounds) tile on the board.
-	 */
+	 *//*
 	@Test
 	public void testInvalidSpriteAt() {
 		try {
@@ -238,7 +256,7 @@ public class BoardTest {
 			String message = "PRE: (10, 10)not on board of size 10 * 10";
 			assertEquals(message, e.getMessage());
 		}
-	}
+	}*/
 	
 //////////////Within Borders test//////////////////
 	/**
@@ -272,10 +290,10 @@ public class BoardTest {
 		assertEquals(boardTile.getY(), 6);
 	}
 	
-	/**
+/*	*//**
 	 * Confirm that we cannot get a tile outside the boundaries of the board using the TileAt 
 	 * method
-	 */
+	 *//*
 	@Test
 	public void testInvalidTileAt() {
 		try {
@@ -286,11 +304,11 @@ public class BoardTest {
 			String message = "PRE: (10, 5)not on board of size 10 * 10";
 			assertEquals(message, e.getMessage());
 		}
-	}
+	}*/
 	
-	/**
+/*	*//**
 	 * Confirm that we cannot get a tile at an offset if the base tile is null
-	 */
+	 *//*
 	@Test
 	public void testNullTileAtOffset() {
 		try {
@@ -301,12 +319,12 @@ public class BoardTest {
 			String message = "PRE1: start tile should not be null.";
 			assertEquals(message, e.getMessage());
 		}
-	}
+	}*/
 	
-	/**
+/*	*//**
 	 * Confirm that we cannot get a tile at an offset if the base tile is
 	 * out of boundaries
-	 */
+	 *//*
 	@Test
 	public void testInvalidBaseTileAtOffset() {
 		try {
@@ -317,7 +335,7 @@ public class BoardTest {
 			String message = "PRE2(10, 10)not on board of size 10 * 10";
 			assertEquals(message, e.getMessage());
 		}
-	}
+	}*/
 
 	
 	/**

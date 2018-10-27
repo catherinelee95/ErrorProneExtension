@@ -37,29 +37,29 @@ public class SpriteTest {
 		john.occupy(center);
 	}
 
-	/**
+/*	*//**
 	 * Confirm that an assertion error should be thrown when
 	 * we try to occupy a null tile.
 	 * 
-	 */
+	 *//*
 	@Test (expected = AssertionError.class)
 	public void testOccupyNull() throws AssertionError {
 		john.occupy(null);
 	}
-	
-	/**
+	*/
+/*	*//**
 	 * Confirm that an assertion error should be thrown when
 	 * we try to occupy twice.
-	 */
+	 *//*
 	@Test (expected = AssertionError.class)
 	public void testOccupyTwice() throws AssertionError {
 		john.occupy(center);
-	}
+	}*/
 	
-	/**
+/*	*//**
 	 * Confirm that an assertion error should be thrown when
 	 * we try to deoccupy an empty tile.
-	 */
+	 *//*
 	@Test
 	public void testDeocupiedEmptyTile() {
 		try {
@@ -71,7 +71,7 @@ public class SpriteTest {
 			String message = "PRE: Must occupy a cell already.";
 			assertEquals(message, e.getMessage());
 		}
-	}
+	}*/
 	
 	/**
 	 * Test the initial situation.

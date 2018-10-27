@@ -101,7 +101,8 @@ public class GameTest {
 	public void testC1a_PlayerMovesToEmpty() throws FactoryException {		
 		Game g = makePlay("P #");
 		g.movePlayer(Direction.RIGHT);
-		
+		System.out.println(tileAt(g, 1, 0));
+		System.out.println(g.getPlayer().getTile());
 		assertEquals("Player moved", tileAt(g, 1, 0), g.getPlayer().getTile());
 		assertEquals("No food eaten.", 0, g.getPlayer().getPoints());
 		assertEquals(Direction.RIGHT, g.getPlayer().getDirection());
@@ -272,6 +273,19 @@ public class GameTest {
 		
 		Tile newTile = g.getPlayer().getTile();
 		assertThat("Player moved", tileAt(g, 2, 0), equalTo(newTile));
+	}
+	
+	
+	/**
+	 * Test that we won the game if there is no food left 
+	 * on the board.
+	 * 
+	 * @throws FactoryException Never.
+	 */
+	@Test 
+	public void testGameWon() throws FactoryException {
+		Game g = makePlay("P# ");
+		assertTrue(g.won());
 	}
 
 	

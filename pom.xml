@@ -252,6 +252,7 @@
 						<param>org.jpacman.test.framework.model.SpriteTest</param>
 						<param>org.jpacman.test.framework.model.PointManagerTest</param>
 						<param>org.jpacman.test.framework.model.BoardTileAtTest</param>
+						<param>org.jpacman.test.framework.model.BoardTest</param>
 						<param>org.jpacman.test.framework.model.GameTest</param>
 					</targetTests>
 					<excludedMethods>
@@ -265,7 +266,7 @@
 					  true
 					</verbose>
 					<jvmArgs>
-						<value>-enableassertions</value>
+						<value>-disableassertions</value>
 					</jvmArgs>
 				</configuration>
 			</plugin>
