@@ -55,4 +55,6 @@ public class PointManagerTest {
 		pm.consumePointsOnBoard(player, totalPoints);
 		assertTrue(pm.allEaten());
 	}
+	
+	
 }

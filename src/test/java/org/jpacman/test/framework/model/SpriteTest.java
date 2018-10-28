@@ -98,7 +98,7 @@ public class SpriteTest {
 		// but john doesn't live in the center anymore.
 		assertFalse(center.containsSprite(john));
 	}
-
+	
 	/**
 	 * Test what happens if there are multiple sprites on one tile.
 	 */

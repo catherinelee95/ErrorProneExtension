@@ -225,6 +225,66 @@ public class GameTest {
 		game.moveGhost(theGhost, Direction.LEFT);
 		assertEquals(SpriteType.FOOD, game.getBoard().spriteTypeAt(1, 0));
 	}
+	
+	/**
+	 * Test what happens if we move a dead player
+	 * 
+	 * @throws FactoryException
+	 */
+	@Test
+	public void testMoveDeadPlayer() throws FactoryException {
+		Game game = makePlay("P.#");
+		Player player = game.getPlayer();
+		player.die();
+		game.movePlayer(Direction.RIGHT);
+		
+		Tile newTile = tileAt(game, 1, 0);
+		assertTrue(newTile.topSprite() != player);
+	}
+	
+	/**
+	 * Test what happens if we move a dead player to a wall
+	 * 
+	 * @throws FactoryException
+	 */
+	@Test
+	public void testMoveDeadPlayerToWall() throws FactoryException {
+		Game game = makePlay("P#");
+		Player player = game.getPlayer();
+		player.die();
+		game.movePlayer(Direction.RIGHT);
+		
+		Tile newTile = tileAt(game, 1, 0);
+		assertTrue(newTile.topSprite() != player);
+	}
+	
+	/**
+	 * Test what happens if we move a player into a wall
+	 * 
+	 * @throws FactoryException
+	 */
+	@Test
+	public void moveToWall() throws FactoryException {
+		Game game = makePlay("P#");
+		Player player = game.getPlayer();
+		Tile wallTile = tileAt(game, 1, 0);
+		
+		game.movePlayer(Direction.RIGHT);
+		assertTrue(wallTile.topSprite() != player);
+		assertTrue(player.getTile() != wallTile);
+	}
+	
+	@Test
+	public void movePlayerInGame() throws FactoryException {
+		Game game = makePlay("P.");
+		Player player = game.getPlayer();
+		game.movePlayer(Direction.RIGHT);
+		
+		Tile oldTile = tileAt(game, 0, 0);
+		Tile newTile = tileAt(game, 1, 0);
+		assertTrue(oldTile.topSprite() != player);
+		assertTrue(newTile.topSprite() == player);
+	}
 
 	
 	/**

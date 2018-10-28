@@ -64,7 +64,10 @@ public class BoardWithinBordersTest {
 			    { 3, 0, true },
 			    { 4, -1, false },
 			    { 7, 20, false },
-			    { 8, 19, true } };
+			    { 7, 21, false },
+			    { 8, 19, true },
+			    { 11, 19, false },
+			    { 11, 21, false }};
 		return Arrays.asList(values);
 	}
 	
