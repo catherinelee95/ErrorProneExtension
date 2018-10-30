@@ -1,0 +1,8 @@
+TestNo,TestName
+1,org.jpacman.test.framework.factory.FactoryIntegrationTest
+2,org.jpacman.test.framework.model.BoardTest
+3,org.jpacman.test.framework.model.BoardTileAtTest
+4,org.jpacman.test.framework.model.BoardWithinBordersTest
+5,org.jpacman.test.framework.model.GameTest
+6,org.jpacman.test.framework.model.PointManagerTest
+7,org.jpacman.test.framework.model.SpriteTest
