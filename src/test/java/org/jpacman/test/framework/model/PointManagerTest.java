@@ -32,13 +32,13 @@ public class PointManagerTest {
 	}
 	
 
-	/**
+/*	*//**
 	 * Test consumption of more food than what is available on the board
-	 */
+	 *//*
 	@Test public void testEatMoreFoodThanAvailable() {
 		pm.consumePointsOnBoard(player, 12);
 		assertFalse(pm.allEaten());
-	}
+	}*/
 	
 
 	/**

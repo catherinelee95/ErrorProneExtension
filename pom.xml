@@ -243,6 +243,7 @@
 					<targetClasses>
 						<param>org.jpacman.framework.factory.DefaultGameFactory</param>
 						<param>org.jpacman.framework.model.Sprite</param>
+						<param>org.jpacman.framework.model.Food</param>
 						<param>org.jpacman.framework.model.Board</param>
 						<param>org.jpacman.framework.model.PointManager</param>
 						<param>org.jpacman.framework.model.Game</param>
@@ -268,6 +269,16 @@
 					<jvmArgs>
 						<value>-disableassertions</value>
 					</jvmArgs>
+					<mutators>
+						<mutator>CONDITIONALS_BOUNDARY</mutator>
+						<mutator>INCREMENTS</mutator>
+						<mutator>INVERT_NEGS</mutator>
+						<mutator>MATH</mutator>
+						<mutator>NEGATE_CONDITIONALS</mutator>
+						<mutator>RETURN_VALS</mutator>
+						<mutator>VOID_METHOD_CALLS</mutator>
+						<mutator>INLINE_CONSTS</mutator>
+					</mutators>
 				</configuration>
 			</plugin>
 

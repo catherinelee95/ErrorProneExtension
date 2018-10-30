@@ -337,16 +337,30 @@ public class GameTest {
 	
 	
 	/**
+	 * Test that the died method to return true if the player died.
+	 * 
+	 * @throws FactoryException Never.
+	 */
+	@Test 
+	public void testDied() throws FactoryException {
+		Game game = makePlay("P#");
+		Player player = game.getPlayer();
+		player.die();
+		assertTrue(game.died());
+	}
+	
+	
+	/**
 	 * Test that we won the game if there is no food left 
 	 * on the board.
 	 * 
 	 * @throws FactoryException Never.
 	 */
-	@Test 
+	/*@Test 
 	public void testGameWon() throws FactoryException {
 		Game g = makePlay("P# ");
 		assertTrue(g.won());
-	}
+	}*/
 
 	
 	/**

@@ -111,8 +111,7 @@ public class Game extends Observable
 	private boolean tileCanBeOccupied(Tile target) {
 		assert target != null : "PRE: Argument can't be null";
 		Sprite currentOccupier = target.topSprite();
-		return 
-			currentOccupier == null 
+		return currentOccupier == null 
 			|| currentOccupier.getSpriteType() != SpriteType.WALL;
 	}
 	

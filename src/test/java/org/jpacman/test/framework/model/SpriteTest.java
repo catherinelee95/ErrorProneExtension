@@ -37,11 +37,11 @@ public class SpriteTest {
 		john.occupy(center);
 	}
 	
-	@Test
+/*	@Test
 	public void testEmptyTile() {
 		Sprite bob = new Sprite() { };
 		assertEquals(bob.getTile(), null);
-	}
+	}*/
 
 /*	*//**
 	 * Confirm that an assertion error should be thrown when
