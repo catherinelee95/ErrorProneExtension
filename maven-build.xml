@@ -140,10 +140,13 @@
         </classpath>
         <batchtest fork="no">
             <fileset dir="${maven.build.testDir.0}">
-                <include name="**/Test*.java"/>
-                <include name="**/*Test.java"/>
-                <include name="**/*TestCase.java"/>
-                <exclude name="**/*Abstract*Test.java"/>
+                <include name="**/FactoryIntegrationTest.java"/>
+                <include name="**/SpriteTest.java"/>
+                <include name="**/PointManagerTest.java"/>
+                <include name="**/BoardTileAtTest.java"/>
+                <include name="**/BoardWithinBordersTest.java"/>
+                <include name="**/BoardTest.java"/>
+                <include name="**/GameTest.java"/>
             </fileset>
         </batchtest>
     </junit>

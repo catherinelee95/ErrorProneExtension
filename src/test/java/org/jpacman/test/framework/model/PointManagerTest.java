@@ -30,6 +30,16 @@ public class PointManagerTest {
 		pm = new PointManager();
 		pm.addPointsToBoard(totalPoints);
 	}
+	
+
+	/**
+	 * Test consumption of more food than what is available on the board
+	 */
+	@Test public void testEatMoreFoodThanAvailable() {
+		pm.consumePointsOnBoard(player, 12);
+		assertFalse(pm.allEaten());
+	}
+	
 
 	/**
 	 * After food has been added, there's more to eat.

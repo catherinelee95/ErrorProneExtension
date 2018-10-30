@@ -36,6 +36,12 @@ public class SpriteTest {
 	public void setUp() {
 		john.occupy(center);
 	}
+	
+	@Test
+	public void testEmptyTile() {
+		Sprite bob = new Sprite() { };
+		assertEquals(bob.getTile(), null);
+	}
 
 /*	*//**
 	 * Confirm that an assertion error should be thrown when
