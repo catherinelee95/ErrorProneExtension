@@ -101,8 +101,6 @@ public class GameTest {
 	public void testC1a_PlayerMovesToEmpty() throws FactoryException {		
 		Game g = makePlay("P #");
 		g.movePlayer(Direction.RIGHT);
-		System.out.println(tileAt(g, 1, 0));
-		System.out.println(g.getPlayer().getTile());
 		assertEquals("Player moved", tileAt(g, 1, 0), g.getPlayer().getTile());
 		assertEquals("No food eaten.", 0, g.getPlayer().getPoints());
 		assertEquals(Direction.RIGHT, g.getPlayer().getDirection());
