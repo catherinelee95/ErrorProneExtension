@@ -13,7 +13,7 @@ it is possible to clone the original error-prone project [google/error-prone](ht
 If you are running from google/error-prone, perform the following steps to set up.
 1. Copy or move the file `ReturnPostIncDecChecker.java` containing the implementation of the checker into `error-prone\core\src\main\java\com\google\errorprone\bugpatterns` directory.
 2. Copy or move the test file `ReturnPostIncDecCheckerTest.java` into `error-prone\core\src\test\java\com\google\errorprone\bugpatterns` directory.
-3. Copy or move the two files to be tested by the checker `ReturnPostIncDecCheckerPositiveCases.java` and `ReturnPostIncDecCheckerNegativeCases.java` into error-prone\core\src\test\java\com\google\errorprone\bugpatterns\testdata directory.
+3. Copy or move the two files to be tested by the checker `ReturnPostIncDecCheckerPositiveCases.java` and `ReturnPostIncDecCheckerNegativeCases.java` into `error-prone\core\src\test\java\com\google\errorprone\bugpatterns\testdata directory.`
 
 ### Option 2: Using catherinelee95/error-prone
 
