@@ -10,5 +10,9 @@ Infer was clearly the most popular choice among developers. However, it was not 
 
 Conceptually, we use the framework to create an AST of the given code, and then identify the return statements of all methods that returned an integer. The AST would also allow us to extract the contents of the return statement, so we can use this to determine if a postfix increment/decrement was present.
 
-To implement our pattern on Error Prone, we followed existing conventions and extended the BugChecker class. Then, we used the matcher provided to filter out any methods that did not return an integer. Using the abstract syntax tree that Error Prone produced, we extracted the expression from the return statement of the method. If the expression was a unary expression, we would check if it is of type “POSTFIX_INCREMENT” or “POSTFIX_DECREMENT”, as this would indicate that a variable is being post-incremented/decremented at a return statement. If the statement was more complex, we would then match the statement against a regex, to identify if a valid variable name contained a postfix increment or decrement.
+To implement our pattern on Error Prone, we followed existing conventions and extended the BugChecker class. Then, we used the matcher provided to filter out any methods that did not return an integer. Using the abstract syntax tree that Error Prone produced, we extracted the expression from the return statement of the method and used the following heuristic:
+
+1. If the expression was a unary expression, we would check if it is of type “POSTFIX_INCREMENT” or “POSTFIX_DECREMENT”, as this would indicate that a variable is being post-incremented/decremented at a return statement. 
+
+2. If the statement was more complex, we would then match the statement against a regex, to identify if a valid variable name contained a postfix increment or decrement. A valid variable name includes only characters discussed in [https://docs.oracle.com/javase/tutorial/java/nutsandbolts/variables.html], which are letters, digits, dollar signs, or underscore characters
 
