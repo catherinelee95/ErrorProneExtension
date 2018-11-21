@@ -8,7 +8,7 @@ Infer was clearly the most popular choice among developers. However, it was not 
 
 ## How we Implemented:
 
-Conceptually, we use the framework to create an AST of the given code, and then identify the return statements of all methods that returned an integer. The AST would also allow us to extract the contents of the return statement, so we can use this to determine if a postfix increment/decrement was present.
+Conceptually, we use the framework to create an AST of the given code, and then identify the return statements of all methods that returned a numeric data type (int, float, short, double, byte, long). The AST would also allow us to extract the contents of the return statement, so we can use this to determine if a postfix increment/decrement was present.
 
 To implement our pattern on Error Prone, we followed existing conventions and extended the BugChecker class. Then, we used the matcher provided to filter out any methods that did not return an integer. Using the abstract syntax tree that Error Prone produced, we extracted the expression from the return statement of the method and used the following heuristic:
 
