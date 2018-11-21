@@ -21,6 +21,7 @@ and checkout Post-Inc-Dec-Checker.
 
 ```
 git clone https://github.com/catherinelee95/error-prone.git
+cd error-prone
 git checkout Post-Inc-Dec-Checker
 ```
 
