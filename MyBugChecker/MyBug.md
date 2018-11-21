@@ -14,7 +14,7 @@ public int addOne(int x){
 
 This bug is also referenced by the Spotbugs [https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html] as “DLS: Useless increment in return statement”.
 
-We cover all valid cases of a post-increment and post-decrement being used in a return statement. As post-increment/decrements can only be applied to integers stored in variables, we only cover such cases. 
+We cover all valid cases of a post-increment and post-decrement being used in a return statement. As post-increment/decrements can only be applied to numberical data types stored in variables, we only cover such cases. Note that when we state variables, this includes variables in both the global and local scopes. 
 
 
 ### Valid instances of a ‘useless increment in return statement’ bug:
@@ -32,7 +32,7 @@ public int calculate(int x, int y){
   return y + x++;
 }
 ```
-3. A non-integer datatype being type casted into an integer, and then is involved in either case (1) or (2)
+3. Either case (1) or (2) involved in a type cast
 
 ```
 public int subtractOne(double x){
@@ -77,7 +77,7 @@ public int addFoo(){
 }
 ```
 
-2. An integer not stored in a variable being post-incremented/decremented
+2. An numerical value not stored in a variable being post-incremented/decremented
 
 ```
 public int addOne(){
