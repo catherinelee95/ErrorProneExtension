@@ -12,11 +12,11 @@ it is possible to clone the original error-prone project [google/error-prone](ht
 
 If you are running from google/error-prone, perform the following steps to set up.
 1. Clone the repository using `git clone https://github.com/google/error-prone`.
-2. Run `mvn clean` and then `mvn compile` on the root directory of the project.
-3. Copy or move the file `ReturnPostIncDecChecker.java` containing the implementation of the checker into `error-prone\core\src\main\java\com\google\errorprone\bugpatterns` directory.
-4. Copy or move the test file `ReturnPostIncDecCheckerTest.java` into `error-prone\core\src\test\java\com\google\errorprone\bugpatterns` directory.
-5. Copy or move the two files to be tested by the checker `ReturnPostIncDecCheckerPositiveCases.java` and `ReturnPostIncDecCheckerNegativeCases.java` into `error-prone\core\src\test\java\com\google\errorprone\bugpatterns\testdata` directory.
-6. To run the test for the checker, run `ReturnPostIncDecCheckerTest.java` through the command line using maven or through an IDE such as Eclipse.
+2. Copy or move the file `ReturnPostIncDecChecker.java` containing the implementation of the checker into `error-prone\core\src\main\java\com\google\errorprone\bugpatterns` directory.
+3. Copy or move the test file `ReturnPostIncDecCheckerTest.java` into `error-prone\core\src\test\java\com\google\errorprone\bugpatterns` directory.
+4. Copy or move the two files to be tested by the checker `ReturnPostIncDecCheckerPositiveCases.java` and `ReturnPostIncDecCheckerNegativeCases.java` into `error-prone\core\src\test\java\com\google\errorprone\bugpatterns\testdata` directory.
+
+Then, continue with the Building with Maven step in the following section.
 
 ### Option 2: Using catherinelee95/error-prone
 
