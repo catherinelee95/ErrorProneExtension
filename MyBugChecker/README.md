@@ -5,7 +5,7 @@ mistakes at compile-time.
 
 ## Getting Started
 
-There are two options for setting up error-prone. A fork at [catherinelee95/error-prone](https://github.com/catherinelee95/error-prone.git) is available and already set up. Alternatively,
+There are two options for setting up error-prone. A fork at [catherinelee95/error-prone](https://github.com/catherinelee95/error-prone.git) is available and already inclues our bug checker. Alternatively,
 it is possible to clone the original error-prone project [google/error-prone](https://github.com/google/error-prone).
 
 ### Option 1: Setting Up google/error-prone
@@ -14,6 +14,8 @@ If you are running from google/error-prone, perform the following steps to set u
 1. Copy or move the file `ReturnPostIncDecChecker.java` containing the implementation of the checker into `error-prone\core\src\main\java\com\google\errorprone\bugpatterns` directory.
 2. Copy or move the test file `ReturnPostIncDecCheckerTest.java` into `error-prone\core\src\test\java\com\google\errorprone\bugpatterns` directory.
 3. Copy or move the two files to be tested by the checker `ReturnPostIncDecCheckerPositiveCases.java` and `ReturnPostIncDecCheckerNegativeCases.java` into error-prone\core\src\test\java\com\google\errorprone\bugpatterns\testdata directory.
+
+Note: If the current version of the error-prone project does not work.
 
 
 ### Option 2: Using catherinelee95/error-prone
@@ -43,7 +45,7 @@ mvn -Dtest=*ReturnPostIncDecCheckerTest.java test
 
 ### Running New Test Files
 
-To add new java files to be tested by the checker, perform the following steps.
+To add new java files to be tested by our bug checker, perform the following steps.
 
 1. To create positive cases, you need to add the `// BUG: Diagnostic contains:` notation at the begining of the method that you wanted to test. On the other hand, negative cases do not need any additional notation or changes to be tested.
 ```
