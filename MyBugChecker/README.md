@@ -15,9 +15,6 @@ If you are running from google/error-prone, perform the following steps to set u
 2. Copy or move the test file `ReturnPostIncDecCheckerTest.java` into `error-prone\core\src\test\java\com\google\errorprone\bugpatterns` directory.
 3. Copy or move the two files to be tested by the checker `ReturnPostIncDecCheckerPositiveCases.java` and `ReturnPostIncDecCheckerNegativeCases.java` into error-prone\core\src\test\java\com\google\errorprone\bugpatterns\testdata directory.
 
-Note: If the current version of the error-prone project does not work.
-
-
 ### Option 2: Using catherinelee95/error-prone
 
 This fork already includes the the changes discussed in the previous section. To use our bug checker, simply clone the repo
