@@ -53,7 +53,15 @@ To add new java files to be tested by our bug checker, perform the following ste
 ```
 
 2. Add the new java file to be tested into the `error-prone\core\src\test\java\com\google\errorprone\bugpatterns\testdata` directory.
-3. //TODO
+3. Modify the `ReturnPostIncDecCheckerTest.java` file by including the new file to be tested.
+```
+@Test
+  public void returnPostIncDecCheckerNegativeCases() {
+    compilationHelper.addSourceFile("ReturnPostIncDecCheckerPositiveCases.java").doTest();
+  }
+
+```
+4. To run the test, run `ReturnPostIncDecCheckerTest.java` through the command line using maven or through an IDE such as Eclipse. 
 
 
 
