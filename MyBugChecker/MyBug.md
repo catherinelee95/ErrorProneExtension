@@ -85,4 +85,4 @@ public int addOne(){
 }
 ```
 
-Note that normally, non-integer datatypes being post-incremented/decremented is uncompilable. However, it may be possible to perform a type cast to do this. As this would still result in buggy code that may fail tests, we do not consider it to be an invalid instance. The focus of our bug, however, remains to be integers involved in a useless post increment/decrement.
+Note that normally, non-integer datatypes being post-incremented/decremented is uncompilable. However, it may be possible to perform a type cast to bypass the compilation issue. As this would still result in buggy code that may fail tests, we do not necessarily consider it to be an invalid instance. We do, however, only focus on integers, so we may or may not detect non-integer cases. Generally, this is dependent on whether the method returns an integer or not.
