@@ -1,6 +1,6 @@
 
 
-## The Bug: "Useless Integer Increment in Return Statement"
+## The Bug: "Useless Increment in Return Statement"
 
 Developers may sometimes perform mathematical operations in a return statement. However, if the post-increment (e.g. x++) or post-decrement (e.g. x--) operator is used during a return statement, the variable would remain unchanged. The post operator would not be executed. That is, the statement [return x++] would be equivalent to [return x]. This bug may not be apparent to developers initially, but can cause unwanted behaviour.
 
@@ -17,7 +17,7 @@ This bug is also referenced by the Spotbugs [https://spotbugs.readthedocs.io/en/
 We cover all valid cases of a post-increment and post-decrement being used in a return statement. As post-increment/decrements can only be applied to integers stored in variables, we only cover such cases. 
 
 
-### Valid instances of a ‘useless integer increment in return statement’ bug:
+### Valid instances of a ‘useless increment in return statement’ bug:
 1. A single variable being post incremented/decremented (e.g. x++ or x--)
 
 ```
@@ -67,7 +67,7 @@ public int subtractOne(int x){
 
 ### Uncompilable instances:
 
-As the following instances cannot be compiled, our bug does not detect them. We do not consider them to be valid instances of our bug.
+As the following instances cannot be compiled, our bug checker does not detect them. We do not consider them to be valid instances of our bug.
 
 1. The result of a method being post-incremented/decremented
 
@@ -85,4 +85,3 @@ public int addOne(){
 }
 ```
 
-Note that normally, non-integer datatypes being post-incremented/decremented is uncompilable. However, it may be possible to perform a type cast to bypass the compilation issue. As this would still result in buggy code that may fail tests, we do not necessarily consider it to be an invalid instance. We do, however, only focus on integers, so we may or may not detect non-integer cases. Generally, this is dependent on whether the method returns an integer or not.
