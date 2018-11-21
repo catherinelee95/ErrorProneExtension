@@ -3,48 +3,42 @@
 Error Prone is a static analysis tool for Java that catches common programming
 mistakes at compile-time.
 
-```java
-public class ShortSet {
-  public static void main (String[] args) {
-    Set<Short> s = new HashSet<>();
-    for (short i = 0; i < 100; i++) {
-      s.add(i);
-      s.remove(i - 1);
-    }
-    System.out.println(s.size());
-  }
-}
-```
-
-```
-error: [CollectionIncompatibleType] Argument 'i - 1' should not be passed to this method;
-its type int is not compatible with its collection's type argument Short
-      s.remove(i - 1);
-              ^
-    (see https://errorprone.info/bugpattern/CollectionIncompatibleType)
-1 error
-```
-
 ## Getting Started
 
-Our documentation is at [errorprone.info](https://errorprone.info).
+There are two options for setting up error-prone. A fork at [catherinelee95/error-prone](https://github.com/catherinelee95/error-prone.git) is available and already set up. Alternatively,
+it is possible to clone the original error-prone project [google/error-prone](https://github.com/google/error-prone).
 
-Error Prone works with [Bazel](https://bazel.build),
-[Maven](https://maven.apache.org), [Ant](https://ant.apache.org), and
-[Gradle](https://gradle.org). See our [installation
-instructions](https://errorprone.info/docs/installation) for details.
+### Option 1: Setting Up google/error-prone
 
-## Developing Error Prone
+If you are running from google/error-prone, perform the following steps to set up.
 
-Developing and building Error Prone is documented on the
-[wiki](https://github.com/google/error-prone/wiki/For-Developers).
 
-## Links
+### Option 2: Using catherinelee95/error-prone
 
--   Mailing lists
-    -   [General
-        discussion](https://groups.google.com/forum/#!forum/error-prone-discuss)
-    -   [Announcements](https://groups.google.com/forum/#!forum/error-prone-announce)
--   [Javadoc](https://errorprone.info/api/latest/)
--   Pre-release snapshots are available from [Sonatype's snapshot
-    repository](https://oss.sonatype.org/content/repositories/snapshots/com/google/errorprone/).
+This fork already includes the the changes discussed in the previous section. To use our bug checker, simply clone the repo
+and checkout Post-Inc-Dec-Checker.
+
+
+```
+git clone https://github.com/catherinelee95/error-prone.git
+git checkout Post-Inc-Dec-Checker
+```
+
+Then, continue with the Building with Maven step in the following section.
+
+### Building with Maven 
+
+Run the following commands in your root project directory for error-prone to compile and run the test for our bug checker. If you are unable to compile the project, consider updating to the latest version of Java (Java version 11.01).
+
+```
+mvn clean
+mvn compile
+cd core
+mvn -Dtest=*ReturnPostIncDecCheckerTest.java test
+```
+
+### Running New Files
+
+
+
+
