@@ -21,7 +21,7 @@ Then, continue with the Building with Maven step in the following section.
 
 ### Option 2: Using catherinelee95/error-prone
 
-This fork already includes the the changes discussed in the previous section. To use our bug checker, simply clone the repo
+This fork already includes the changes discussed in the previous section. To use our bug checker, simply clone the repo
 and checkout Post-Inc-Dec-Checker.
 
 
