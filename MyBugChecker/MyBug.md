@@ -4,7 +4,7 @@
 
 Developers may sometimes perform mathematical operations in a return statement. However, if the post-increment (e.g. x++) or post-decrement (e.g. x--) operator is used during a return statement, the variable would remain unchanged. The post operator would not be executed. That is, the statement [return x++] would be equivalent to [return x]. This bug may not be apparent to developers initially, but can cause unwanted behaviour.
 
-An simple example of the bug:
+A simple example of the bug:
 
 ```
 public int addOne(int x){
@@ -14,7 +14,7 @@ public int addOne(int x){
 
 This bug is also referenced by the Spotbugs [https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html] as “DLS: Useless increment in return statement”.
 
-We cover all valid cases of a post-increment and post-decrement being used in a return statement. As post-increment/decrements can only be applied to numberical data types stored in variables, we only cover such cases. Note that when we state variables, this includes variables in both the global and local scopes. 
+We cover all valid cases of a post-increment and post-decrement being used in a return statement. As post-increments/decrements can only be applied to numberical data types stored in variables, we only cover such cases. Note that when we state variables, this includes variables in both the global and local scopes. 
 
 
 ### Valid instances of a ‘useless increment in return statement’ bug:
